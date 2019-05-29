@@ -70,7 +70,7 @@ Xtrain, Xtest, ytrain, ytest = train_test_split(X, y, test_size=0.2, random_stat
 EMBEDDING_SIZE = 128
 HIDDEN_LAYER_SIZE = 64
 BATCH_SIZE = 32
-NUM_EPOCHS = 10
+NUM_EPOCHS = 3
 model = Sequential()
 model.add(Embedding(vocab_size, EMBEDDING_SIZE,input_length=MAX_SENTENCE_LENGTH))
 model.add(LSTM(HIDDEN_LAYER_SIZE, dropout=0.2, recurrent_dropout=0.2))
@@ -83,7 +83,7 @@ model.fit(Xtrain, ytrain, batch_size=BATCH_SIZE, epochs=NUM_EPOCHS,validation_da
 score, acc = model.evaluate(Xtest, ytest, batch_size=BATCH_SIZE)
 print("\nTest score: %.3f, accuracy: %.3f" % (score, acc))
 print('{}   {}      {}'.format('预测','真实','句子'))
-for i in range(5):
+for i in range(10):
     idx = np.random.randint(len(Xtest))
     xtest = Xtest[idx].reshape(1,40)
     ylabel = ytest[idx]
